@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>board</title>
+<link rel="stylesheet" th:href="@{/css/style.css}"></link>
+</head>
+<body>
+	<div class="container">
+		<h2>게시글 등록</h2>
+		<form id="frm" name="frm" method="post" action="/jpa/board/write" enctype="multipart/form-data">
+			<table class="board_detail">
+				<tr>
+					<td>작성자</td>
+					<td><input type="text" id="creatorId" name="creatorId"></td>
+				</tr>
+				<tr>
+					<td>제목</td>
+					<td><input type="text" id="title" name="title"></td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<textarea id="contents" name="contents"></textarea>
+					</td>
+				</tr>
+			</table>
+			
+			<input type="file" id="files" name="files" multiple="multiple"><br>
+
+		</form>
+		
+		<a href="#this" id="list" class="btn">목록</a>
+		<a href="#this" id="submit" class="btn">저장</a>
+	</div>
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script type="text/javascript">
+	
+		$(document).ready(function(){
+			
+			$("#list").on("click", function(){
+				
+				location.href = "/jpa/board";
+			});
+			
+			$("#submit").on("click", function(){
+							
+				var frm = $("#frm")[0];
+				frm.action = "/jpa/board/write";
+				frm.submit();
+			});
+
+		});
+		
+	</script>
+</body>
+</html>

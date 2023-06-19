@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="true">
+	<!-- Appenders -->
+	<appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<Pattern>%d %5p [%c] %m%n</Pattern>
+		</encoder>
+	</appender>
+	<appender name="console-infolog" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<Pattern>%d %5p %m%n</Pattern>
+		</encoder>
+	</appender>
+	
+	<!-- 개발환경 로거 -->
+	<springProfile name="dev">
+	
+		<logger name="board" level="DEBUG" appender-ref="console" />
+		<logger name="jdbc.sqlonly" level="INFO" appender-ref="console-infolog" />
+		<logger name="jdbc.resultsettable" level="INFO" appender-ref="console-infolog" />
+		
+	</springProfile>
+	
+	<!-- 운영환경 로거 -->
+	<springProfile name="production">
+	
+		<logger name="board" level="ERROR" appender-ref="console" />
+		
+	</springProfile>
+	
+	
+	<!-- 루트 로거 -->
+	<!-- <root level="off"> -->
+	<root level="error">
+		<appender-ref ref="console" />
+	</root>
+</configuration>
